@@ -24,7 +24,7 @@ public class GameController {
     }
 
     @PostMapping("/question/next")
-    public void startGame(@RequestParam String id) {
+    public void triggerNextQuestion(@RequestParam String id) {
         gameService.triggerNextQuestion(id);
     }
 
