@@ -18,17 +18,17 @@ import java.util.List;
 @EnableMongoRepositories(basePackages = "com.example.demo.repository")
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-    public static final String COMMENTS_DB = "comments-db";
+    public static final String KAHOOT_DB = "kahoot-db";
     private final List<Converter<?, ?>> converters = new ArrayList<Converter<?, ?>>();
 
     @Override
     protected String getDatabaseName() {
-        return COMMENTS_DB;
+        return KAHOOT_DB;
     }
 
     @Override
     public MongoClient mongoClient() {
-        final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/" + COMMENTS_DB);
+        final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/" + KAHOOT_DB);
         final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
