@@ -34,7 +34,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public void startGame(StartGameRequestDto requestDto) {
         Game game = getGame(requestDto.getId());
-        triggerNextQuestion(requestDto.getId());
+        triggerNextQuestion(game);
         game.setState(GameState.ONGOING);
         gameRepository.save(game);
     }
@@ -42,8 +42,15 @@ public class GameServiceImpl implements GameService {
     @Override
     public void triggerNextQuestion(String id) {
         Game game = getGame(id);
+        validateGameIsOngoing(game);
         triggerNextQuestion(game);
         gameRepository.save(game);
+    }
+
+    private void validateGameIsOngoing(Game game) {
+        if (game.getState() != GameState.ONGOING) {
+            throw new BadInputException("Cannot trigger next question if game is not ongoing : " + game.getId());
+        }
     }
 
     @Override
@@ -59,6 +66,7 @@ public class GameServiceImpl implements GameService {
         boolean isLastQuestionOngoing = lastQuestion.getState() == QuestionState.ONGOING;
         if (isLastQuestionOngoing) {
             setAnswered(lastQuestion);
+            return;
         }
         throw new BadInputException("Last question is not ongoing on this game : " + game.getId());
     }
@@ -68,18 +76,16 @@ public class GameServiceImpl implements GameService {
         for (int i = 0; i < questionList.size(); i++) {
             Question currentQuestion = questionList.get(i);
             boolean currentQuestionNotAskedYet = currentQuestion.getState() == QuestionState.NOT_ASKED_YET;
-            if (i == 0) {
-                if (currentQuestionNotAskedYet) {
-                    setOngoing(currentQuestion);
-                    break;
-                }
-            } else {
+            if (i == 0 && currentQuestionNotAskedYet) {
+                setOngoing(currentQuestion);
+                return;
+            } else if (i != 0) {
                 Question beforeQuestion = questionList.get(i - 1);
-                boolean lastQuestionOngoing = beforeQuestion.getState() == QuestionState.ONGOING;
-                if (lastQuestionOngoing && currentQuestionNotAskedYet) {
+                boolean beforeQuestionOngoing = beforeQuestion.getState() == QuestionState.ONGOING;
+                if (beforeQuestionOngoing && currentQuestionNotAskedYet) {
                     setAnswered(beforeQuestion);
                     setOngoing(currentQuestion);
-                    break;
+                    return;
                 }
             }
         }

@@ -1,0 +1,59 @@
+{
+   "id":"123456789",
+   "adminName":"marwen",
+   "creationDate":"2022-05-20 11:40:00.000",
+   "questionList":[
+      {
+         "answerList":[
+            {
+               "answer":"100 Celcius",
+               "order":1,
+               "isCorrect":true
+            },
+            {
+               "answer":"50 Celcius",
+               "order":2,
+               "isCorrect":false
+            },
+            {
+               "answer":"150 Celcius",
+               "order":3,
+               "isCorrect":false
+            },
+            {
+               "answer":"0 Celcius",
+               "order":4,
+               "isCorrect":false
+            }
+         ],
+         "question":"whats water boiling temperature ?",
+         "order":1
+      },
+      {
+         "answerList":[
+            {
+               "answer":"N.America",
+               "order":1,
+               "isCorrect":false
+            },
+            {
+               "answer":"Africa",
+               "order":2,
+               "isCorrect":false
+            },
+            {
+               "answer":"Europe",
+               "order":3,
+               "isCorrect":false
+            },
+            {
+               "answer":"S.America",
+               "order":4,
+               "isCorrect":true
+            }
+         ],
+         "question":"Where is Brazil ?",
+         "order":2
+      }
+   ]
+}

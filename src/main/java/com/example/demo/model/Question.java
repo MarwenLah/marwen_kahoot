@@ -8,8 +8,8 @@ import java.util.List;
 
 @Data
 public class Question {
-    @Field(name = "questionOrder")
-    private int questionOrder;
+    @Field(name = "order")
+    private int order;
     @Field(name = "question")
     private String question;
     @Field(name = "expirationDate")

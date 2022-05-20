@@ -34,7 +34,7 @@ public class Mapper {
 
     private Question toQuestion(QuestionDto questionDto) {
         Question question = new Question();
-        question.setQuestionOrder(questionDto.getQuestionOrder());
+        question.setOrder(questionDto.getOrder());
         question.setQuestion(questionDto.getQuestion());
         question.setAnswerList(
                 questionDto.getAnswerList()
@@ -47,7 +47,7 @@ public class Mapper {
 
     private Answer toAnswer(AnswerDto answerDto) {
         Answer answer = new Answer();
-        answer.setAnswerOrder(answerDto.getAnswerOrder());
+        answer.setOrder(answerDto.getOrder());
         answer.setAnswer(answerDto.getAnswer());
         answer.setCorrect(Boolean.TRUE.equals(answerDto.getIsCorrect()));
         return answer;
