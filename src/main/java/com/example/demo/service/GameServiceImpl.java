@@ -61,6 +61,12 @@ public class GameServiceImpl implements GameService {
         gameRepository.save(game);
     }
 
+    @Override
+    public Game getGame(String gameId) {
+        return gameRepository.findById(gameId)
+                .orElseThrow(() -> new NotFoundException("Game not found for id " + gameId));
+    }
+
     private void setLastQuestionToAnswered(Game game) {
         Question lastQuestion = Iterables.getLast(game.getQuestionList());
         boolean isLastQuestionOngoing = lastQuestion.getState() == QuestionState.ONGOING;
@@ -98,12 +104,7 @@ public class GameServiceImpl implements GameService {
 
     private void setOngoing(Question question) {
         question.setState(QuestionState.ONGOING);
-        question.setExpirationDate(LocalDateTime.now());
-    }
-
-    private Game getGame(String requestDto) {
-        return gameRepository.findById(requestDto)
-                .orElseThrow(() -> new NotFoundException("Game not found for id " + requestDto));
+        question.setExpirationDate(LocalDateTime.now().plusSeconds(10)); // todo make a config
     }
 
 }

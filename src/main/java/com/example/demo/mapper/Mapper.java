@@ -3,7 +3,7 @@ package com.example.demo.mapper;
 import com.example.demo.dto.AnswerDto;
 import com.example.demo.dto.CreateGameRequestDto;
 import com.example.demo.dto.QuestionDto;
-import com.example.demo.model.Answer;
+import com.example.demo.model.Option;
 import com.example.demo.model.Game;
 import com.example.demo.model.Question;
 import org.springframework.stereotype.Component;
@@ -36,7 +36,7 @@ public class Mapper {
         Question question = new Question();
         question.setOrder(questionDto.getOrder());
         question.setQuestion(questionDto.getQuestion());
-        question.setAnswerList(
+        question.setOptionList(
                 questionDto.getAnswerList()
                         .stream()
                         .map(this::toAnswer)
@@ -45,11 +45,11 @@ public class Mapper {
         return question;
     }
 
-    private Answer toAnswer(AnswerDto answerDto) {
-        Answer answer = new Answer();
-        answer.setOrder(answerDto.getOrder());
-        answer.setAnswer(answerDto.getAnswer());
-        answer.setCorrect(Boolean.TRUE.equals(answerDto.getIsCorrect()));
-        return answer;
+    private Option toAnswer(AnswerDto answerDto) {
+        Option option = new Option();
+        option.setOrder(answerDto.getOrder());
+        option.setOption(answerDto.getAnswer());
+        option.setCorrect(Boolean.TRUE.equals(answerDto.getIsCorrect()));
+        return option;
     }
 }

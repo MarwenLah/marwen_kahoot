@@ -17,5 +17,5 @@ public class Question {
     @Field(name = "state")
     private QuestionState state = QuestionState.NOT_ASKED_YET;
     @Field(name = "answerList")
-    private List<Answer> answerList;
+    private List<Option> optionList;
 }
