@@ -16,6 +16,6 @@ public class Question {
     private LocalDateTime expirationDate;
     @Field(name = "state")
     private QuestionState state = QuestionState.NOT_ASKED_YET;
-    @Field(name = "answerList")
+    @Field(name = "optionList")
     private List<Option> optionList;
 }

@@ -5,15 +5,15 @@ public enum GameState {
     ONGOING,
     ENDED;
 
-    public static boolean hasStarted(Game game) {
-        return game.getState() != NOT_STARTED_YET;
+    public boolean hasStarted() {
+        return this != NOT_STARTED_YET;
     }
-    public static boolean hasNotStartedYet(Game game) {
-        return game.getState() == NOT_STARTED_YET;
+    public boolean hasNotStartedYet() {
+        return this == NOT_STARTED_YET;
     }
 
-    public static boolean isOngoing(Game game) {
-        return game.getState() == ONGOING;
+    public boolean isOngoing() {
+        return this == ONGOING;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.rest;
 
+import com.example.demo.dto.AnswerQuestionRequestDto;
 import com.example.demo.dto.JoinGameRequestDto;
 import com.example.demo.service.ParticipationService;
 import lombok.AllArgsConstructor;
@@ -16,5 +17,10 @@ public class ParticipantsController {
     @PostMapping("join")
     public void joinGame(@RequestBody JoinGameRequestDto requestDto) {
         participationService.joinGame(requestDto);
+    }
+
+    @PostMapping("answer")
+    public void answerQuestion(@RequestBody AnswerQuestionRequestDto requestDto) {
+        participationService.answerQuestion(requestDto);
     }
 }
