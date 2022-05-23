@@ -10,5 +10,5 @@ import java.util.List;
 public class QuestionDto {
     private int order;
     private String question; // limit length
-    private List<AnswerDto> answerList;  // force number to x in config
+    private List<OptionDto> optionList;  // force number to x in config
 }

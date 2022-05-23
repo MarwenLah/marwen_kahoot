@@ -1,6 +1,6 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dto.AnswerDto;
+import com.example.demo.dto.OptionDto;
 import com.example.demo.dto.CreateGameRequestDto;
 import com.example.demo.dto.QuestionDto;
 import com.example.demo.model.Option;
@@ -8,7 +8,6 @@ import com.example.demo.model.Game;
 import com.example.demo.model.Question;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
@@ -21,8 +20,6 @@ public class Mapper {
         Game game = new Game();
         game.setId(createGameData.getId());
         game.setAdminName(createGameData.getAdminName());
-        LocalDateTime creationDate = LocalDateTime.parse(createGameData.getCreationDate(), FORMATTER);
-        game.setCreationDate(creationDate);
         game.setQuestionList(
                 createGameData.getQuestionList()
                         .stream()
@@ -37,19 +34,19 @@ public class Mapper {
         question.setOrder(questionDto.getOrder());
         question.setQuestion(questionDto.getQuestion());
         question.setOptionList(
-                questionDto.getAnswerList()
+                questionDto.getOptionList()
                         .stream()
-                        .map(this::toAnswer)
+                        .map(this::toOption)
                         .collect(Collectors.toList())
         );
         return question;
     }
 
-    private Option toAnswer(AnswerDto answerDto) {
+    private Option toOption(OptionDto optionDto) {
         Option option = new Option();
-        option.setOrder(answerDto.getOrder());
-        option.setOption(answerDto.getAnswer());
-        option.setCorrect(Boolean.TRUE.equals(answerDto.getIsCorrect()));
+        option.setOrder(optionDto.getOrder());
+        option.setOption(optionDto.getOption());
+        option.setCorrect(Boolean.TRUE.equals(optionDto.getIsCorrect()));
         return option;
     }
 }

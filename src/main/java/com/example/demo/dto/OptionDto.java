@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AnswerDto {
+public class OptionDto {
     private int order;
-    private String answer; // limit answer length
+    private String option; // limit answer length
     @Nullable
     private Boolean isCorrect;
 }

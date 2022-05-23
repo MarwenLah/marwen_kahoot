@@ -10,6 +10,5 @@ import java.util.List;
 public class CreateGameRequestDto {
     private String id;
     private String adminName;
-    private String creationDate;
     private List<QuestionDto> questionList;
 }

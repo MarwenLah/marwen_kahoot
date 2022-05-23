@@ -2,3 +2,30 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+streak:
+  values:
+    - 0
+    - 0
+    - 5
+    - 10
+    - 20
+    - 35
+    - 55
+    - 55
+    - 55
+    - 55
+
+reactionTime:
+  slope:
+    -0.01
+  initialCondition:
+    30
+
+question:
+  expirationInSeconds:
+    10
+
+flatScore:
+  value:
+    50

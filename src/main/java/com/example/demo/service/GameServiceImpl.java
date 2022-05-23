@@ -28,6 +28,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public void createGame(CreateGameRequestDto createGameData) {
         Game game = mapper.toGameData(createGameData);
+        game.setCreationDate(LocalDateTime.now());
         gameRepository.save(game);
     }
 
@@ -104,7 +105,7 @@ public class GameServiceImpl implements GameService {
 
     private void setOngoing(Question question) {
         question.setState(QuestionState.ONGOING);
-        question.setExpirationDate(LocalDateTime.now().plusSeconds(10)); // todo make a config
+        question.setExpirationDate(LocalDateTime.now().plusSeconds(300)); // todo make a config
     }
 
 }

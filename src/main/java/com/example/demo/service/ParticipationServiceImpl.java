@@ -43,7 +43,16 @@ public class ParticipationServiceImpl implements ParticipationService {
 
         Answer answer = constructAnswer(requestDto, answerDate);
         participant.getAnswerList().add(answer);
+
+        setStreak(participant, answer.isCorrect());
+
         participationRepository.save(participation);
+    }
+
+    private void setStreak(Participant participant, boolean isAnswerCorrect) {
+        int oldStreak = participant.getStreak();
+        int newStreak = isAnswerCorrect ?  oldStreak + 1 : 0;
+        participant.setStreak(newStreak);
     }
 
     @Override
